@@ -153,6 +153,7 @@
             <manifest>
               <packageName>org/neo4j/driver</packageName>
             </manifest>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
             <manifestEntries>
               <!-- This is used to programatically determine the driver version -->
               <Implementation-Version>${project.version}-${build.revision}</Implementation-Version>
@@ -171,6 +172,20 @@
             <goals>
               <goal>integration-test</goal>
               <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>bundle-manifest</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
             </goals>
           </execution>
         </executions>
